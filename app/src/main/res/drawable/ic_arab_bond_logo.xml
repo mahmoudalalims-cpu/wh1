@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    
+    <!-- Outer Golden Circular Ring -->
+    <path
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="5"
+        android:pathData="M 100,28 A 45,45 0 1,1 99.9,28 Z" />
+
+    <!-- Arab Bond Monogram Geometric Golden Emblem -->
+    <!-- Top Central Triangle / Delta -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M 100,20 L 125,72 L 100,60 L 75,72 Z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M 100,20 L 100,60 L 75,72 Z" />
+
+    <!-- Left Wing / Chevron forming the 'A' and 'B' -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M 70,68 L 94,115 L 82,122 L 48,78 Z" />
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M 48,78 L 62,70 L 86,110 L 78,116 Z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M 52,90 L 78,135 L 65,142 L 35,98 Z" />
+
+    <!-- Right Wing / Chevron forming the 'B' -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M 130,68 L 106,115 L 118,122 L 152,78 Z" />
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M 152,78 L 138,70 L 114,110 L 122,116 Z" />
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M 148,90 L 122,135 L 135,142 L 165,98 Z" />
+
+    <!-- Lower Diamond Accent -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M 100,138 L 105,147 L 100,154 L 95,147 Z" />
+
+    <!-- Arab Bond Brand Text Line 1 (Stylized Vector bars for text) -->
+    <!-- Lettering bar / Arab Bond Accent underline -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M 30,165 L 170,165 L 170,170 L 30,170 Z" />
+
+    <!-- Gold EST bar -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M 70,180 L 130,180 L 130,183 L 70,183 Z" />
+</vector>

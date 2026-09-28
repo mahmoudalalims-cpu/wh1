@@ -1,0 +1,121 @@
+import java.util.Locale
+
+@Composable
+fun IssueOrderScreen(
+    viewModel: WarehouseViewModel,
+    modifier: Modifier = Modifier
+) {
+    val allItems by viewModel.allItems.collectAsStateWithLifecycle()
+    val issueOrders by viewModel.issueOrders.collectAsStateWithLifecycle()
+    val representatives by viewModel.allRepresentatives.collectAsStateWithLifecycle()
+
+    var orderToCancel by remember { mutableStateOf<IssueOrderEntity?>(null) }
+    val orderDateFormat = remember { SimpleDateFormat("yyyy/MM/dd - hh:mm a", Locale("ar")) }
+
+    var destination by remember { mutableStateOf("") }
+    var recipientName by remember { mutableStateOf("") }
+    var supervisorName by remember { mutableStateOf("محمد الحارثي - أمين المستودع") }
+    var orderNotes by remember { mutableStateOf("") }
+    var repDropdownExpanded by remember { mutableStateOf(false) }
+
+    val orderItems = remember { mutableStateListOf<OrderItem>() }
+
+    // Line input states
+    var selectedItem by remember { mutableStateOf<ItemEntity?>(null) }
+    var itemDropdownExpanded by remember { mutableStateOf(false) }
+    var cartonsInput by remember { mutableStateOf("1") }
+    var piecesInput by remember { mutableStateOf("0") }
+    var lineNotesInput by remember { mutableStateOf("") }
+    var lineError by remember { mutableStateOf<String?>(null) }
+
+    // Pre-calculate line total pieces (Expression: Cartons * Conversion + Pieces)
+    val inputCartons = cartonsInput.toIntOrNull() ?: 0
+    val inputPieces = piecesInput.toIntOrNull() ?: 0
+    val lineFactor = selectedItem?.conversionFactor ?: 1
+    val calculatedLinePieces = (inputCartons * lineFactor) + inputPieces
+
+    val totalCartons = orderItems.sumOf { it.cartons }
+    val totalPieces = orderItems.sumOf { it.pieces }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp)
+            .testTag("issue_order_screen")
+    ) {
+        // Title & Header Banner
+        Surface(
+            shape = RoundedCornerShape(20.dp),
+            color = MinimalistBlueContainer,
+            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFBFDBFE)),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Surface(
+                    shape = androidx.compose.foundation.shape.CircleShape,
+                    color = Color.White,
+                    modifier = Modifier.size(44.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            imageVector = Icons.Default.ReceiptLong,
+                            contentDescription = null,
+                            tint = MinimalistBluePrimary,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.width(12.dp))
+                Column {
+                    Text(
+                        text = "إنشاء أمر صرف مخزني جديد",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MinimalistOnBlueContainer
+                    )
+                    Text(
+                        text = "يخصم الكميات تلقائياً ويصدر سند صرف رسمي لمؤسسة آصرة العرب",
+                        fontSize = 11.sp,
+                        color = Color(0xFF475569)
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Order Details Section
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            shape = RoundedCornerShape(20.dp),
+            border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
+        ) {
+            Column(modifier = Modifier.padding(14.dp)) {
+                Text(
+                    text = "بيانات أمر الصرف",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                OutlinedTextField(
+                    value = destination,
+                    onValueChange = { destination = it },
+                    label = { Text("جهة الصرف (عميل / قسم / فرع)") },
+                    placeholder = { Text("مثال: فرع الرياض الشمالي / شركة التوزيع") },
+                    shape = RoundedCornerShape(12.dp),
+                    colors = warehouseTextFieldColors(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("issue_destination_input"),
+                    singleLine = true
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))

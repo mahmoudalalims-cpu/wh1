@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Center 54, 54. 66dp safe area is [21, 21] to [87, 87] -->
+    <!-- Main Logistics Box / Carton Top -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M54,27 L74,38 L54,49 L34,38 Z" />
+    <!-- Carton Left Face -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M34,38 L54,49 L54,75 L34,64 Z" />
+    <!-- Carton Right Face -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M54,49 L74,38 L74,64 L54,75 Z" />
+    <!-- Box Tape / Seam -->
+    <path
+        android:fillColor="#B45309"
+        android:pathData="M51,31 L57,34 L57,74 L51,71 Z" />
+    
+    <!-- Secondary Small Box on Front-Left -->
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M30,58 L44,65 L44,79 L30,72 Z" />
+    <path
+        android:fillColor="#93C5FD"
+        android:pathData="M44,65 L56,58 L56,72 L44,79 Z" />
+    <path
+        android:fillColor="#BFDBFE"
+        android:pathData="M44,52 L56,58 L44,65 L32,59 Z" />
+
+    <!-- Quality & Order Badge with Checkmark at bottom right -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M70,60 C76.6,60 82,65.4 82,72 C82,78.6 76.6,84 70,84 C63.4,84 58,78.6 58,72 C58,65.4 63.4,60 70,60 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M65,72 L69,76 L76,68" />
+</vector>

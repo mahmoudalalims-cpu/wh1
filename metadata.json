@@ -1,0 +1,6 @@
+{
+  "name": "مخزون آصرة العرب",
+  "description": "نظام إدارة مخزون مستودع مؤسسة آصرة العرب للأصناف الغذائية بوحدتي الكرتون والحبة وحركات المخزون والسندات والتقارير",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
